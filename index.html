@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- ng-* directives to extend html with dynamic content -->
+<!-- entire page will be controlled by Angular -->
+<html ng-app="studentRoster">
+  <head>
+    <title>Student App</title>
+    <script src="lib/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="js/StudentsController.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  </head>
+  <body>
+    <!-- designates the controller for this part of the page -->
+    <div class="container" ng-controller="StudentsCtrl">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Student List</h2>
+          <ul>
+            <!-- iterates through data stored in $scope -->
+            <li ng-repeat="item in students">
+              {{item.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
