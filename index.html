@@ -12,12 +12,28 @@
   <body>
     <!-- designates the controller for this part of the page -->
     <div class="container" ng-controller="StudentsCtrl">
+      <div class="row" ng-show"students.length">
+        <div class="col-md-12">
+          <h4>Search Students</h4>
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <!-- sets the expression to search for -->
+              <input ng-model="query" type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
-          <h2>Student List</h2>
+          <!-- only shows if length of filtered students array is more than zero -->
+          <h2 ng-show="students.length && filtered.length">Student List</h2>
+          <h2 ng-show="students.length && !filtered.length">No Matches</h2>
           <ul>
             <!-- iterates through data stored in $scope -->
-            <li ng-repeat="item in students">
+            <!-- generates new array based on search query -->
+            <!-- "items in students" would show all students -->
+            <!-- filter:query will only show results that match search-->
+            <li ng-repeat="item in filtered = (students | filter:query)">
               <!-- will hide span when editing is equal to true -->
               <span ng-click="editing = true" ng-hide="editing">
                 {{item.name}} <a ng-click="deleteStudent(item)">Delete</a>
